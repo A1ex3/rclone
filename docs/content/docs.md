@@ -437,7 +437,7 @@ Do not use single character names on Windows as it creates ambiguity with Window
 drives' names, e.g.: remote called `C` is indistinguishable from `C` drive. Rclone
 will always assume that single letter name refers to a drive.
 
-## Adding global configuration to a remote
+## Adding global configuration to a remote {#globalconfig}
 
 It is possible to add global configuration to the remote configuration which
 will be applied just before the remote is created.
@@ -2097,25 +2097,25 @@ some context for the `Metadata` which may be important.
 
 ```json
 {
-    "SrcFs": "gdrive:",
-    "SrcFsType": "drive",
-    "DstFs": "newdrive:user",
-    "DstFsType": "onedrive",
-    "Remote": "test.txt",
-    "Size": 6,
-    "MimeType": "text/plain; charset=utf-8",
-    "ModTime": "2022-10-11T17:53:10.286745272+01:00",
-    "IsDir": false,
-    "ID": "xyz",
-    "Metadata": {
-        "btime": "2022-10-11T16:53:11Z",
-        "content-type": "text/plain; charset=utf-8",
-        "mtime": "2022-10-11T17:53:10.286745272+01:00",
-        "owner": "user1@domain1.com",
-        "permissions": "...",
-        "description": "my nice file",
-        "starred": "false"
-    }
+  "SrcFs": "gdrive:",
+  "SrcFsType": "drive",
+  "DstFs": "newdrive:user",
+  "DstFsType": "onedrive",
+  "Remote": "test.txt",
+  "Size": 6,
+  "MimeType": "text/plain; charset=utf-8",
+  "ModTime": "2022-10-11T17:53:10.286745272+01:00",
+  "IsDir": false,
+  "ID": "xyz",
+  "Metadata": {
+    "btime": "2022-10-11T16:53:11Z",
+    "content-type": "text/plain; charset=utf-8",
+    "mtime": "2022-10-11T17:53:10.286745272+01:00",
+    "owner": "user1@domain1.com",
+    "permissions": "...",
+    "description": "my nice file",
+    "starred": "false"
+  }
 }
 ```
 
@@ -2127,15 +2127,15 @@ the description:
 
 ```json
 {
-    "Metadata": {
-        "btime": "2022-10-11T16:53:11Z",
-        "content-type": "text/plain; charset=utf-8",
-        "mtime": "2022-10-11T17:53:10.286745272+01:00",
-        "owner": "user1@domain2.com",
-        "permissions": "...",
-        "description": "my nice file [migrated from domain1]",
-        "starred": "false"
-    }
+  "Metadata": {
+    "btime": "2022-10-11T16:53:11Z",
+    "content-type": "text/plain; charset=utf-8",
+    "mtime": "2022-10-11T17:53:10.286745272+01:00",
+    "owner": "user1@domain2.com",
+    "permissions": "...",
+    "description": "my nice file [migrated from domain1]",
+    "starred": "false"
+  }
 }
 ```
 
@@ -2999,6 +2999,20 @@ The `--client-key` flag is required too when using this.
 
 This loads the PEM encoded client side private key used for mutual TLS
 authentication.  Used in conjunction with `--client-cert`.
+
+Supported types are:
+
+- Unencrypted PKCS#1 ("BEGIN RSA PRIVATE KEY")
+- Unencrypted PKCS#8 ("BEGIN PRIVATE KEY")
+- Encrypted PKCS#8 ("BEGIN ENCRYPTED PRIVATE KEY")
+- Legacy PEM encryption (e.g., DEK-Info headers), which are automatically detected.
+
+### --client-pass string
+
+This can be used to supply an optional password to decrypt the client key file.
+
+**NB** the password should be obscured so it should be the output of
+`rclone obscure YOURPASSWORD`.
 
 ### --no-check-certificate
 

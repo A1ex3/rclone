@@ -1000,3 +1000,7 @@ put them back in again.` >}}
 - Antonin Goude <antonin.goude@ovhcloud.com>
 - Timothy Jacobs <timothy@ironbounddesigns.com>
 - praveen-solanki-oracle <praveen.solanki@oracle.com>
+- huangnauh <huanglibo2010@gmail.com>
+- Lucas Bremgartner <breml@users.noreply.github.com>
+- Binbin Qian <qianbinbin@hotmail.com>
+- cui <523516579@qq.com>
